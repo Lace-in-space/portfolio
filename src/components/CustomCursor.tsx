@@ -41,11 +41,10 @@ export default function CustomCursor() {
         transition: 'opacity 0.3s ease',
       }}
     >
-      {/* Solid dot — grayscale via mix-blend-mode: difference + gray base */}
+      {/* Solid dot — same effect as nav: white + mix-blend-mode: difference */}
       <div
-        className="absolute w-3 h-3 rounded-full"
+        className="absolute w-3 h-3 rounded-full bg-white"
         style={{
-          backgroundColor: 'rgb(128, 128, 128)',
           mixBlendMode: 'difference',
           transform: 'translate(-50%, -50%)',
         }}
