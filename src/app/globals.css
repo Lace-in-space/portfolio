@@ -87,6 +87,13 @@
   }
 }
 
+/* Hide default cursor on desktop (CustomCursor component replaces it) */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
@@ -100,20 +107,27 @@ html {
   color: white;
 }
 
-/* Thin scrollbar — dark on white */
+/* Thin scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 2px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #0a0a0a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1a1a1a;
-  border-radius: 2px;
+  background: #E31E24;
+  border-radius: 1px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #E31E24;
+  background: #ff3b40;
+}
+
+/* Gradient animation keyframes */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

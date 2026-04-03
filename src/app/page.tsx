@@ -2,7 +2,19 @@
 
 import { useState, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ChevronLeft, ChevronRight, ChevronDown, ArrowUpRight } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react'
+import { LanguageProvider } from '@/contexts/LanguageContext'
+import CustomCursor from '@/components/CustomCursor'
+import Header from '@/components/Header'
+import Hero from '@/components/Hero'
+import StorytellingSection from '@/components/StorytellingSection'
+import StatsSection from '@/components/StatsSection'
+import InteractiveDots from '@/components/InteractiveDots'
+import ResumeTimeline from '@/components/ResumeTimeline'
+import QuoteSection from '@/components/QuoteSection'
+import AISection from '@/components/AISection'
+import GWASection from '@/components/GWASection'
+import ContactSection from '@/components/ContactSection'
 
 /* ─── Project Data ─── */
 const projects = [
@@ -87,125 +99,6 @@ function useReveal(threshold = 0.15) {
   return { setRef, isVisible }
 }
 
-/* ─── Scroll-to Section Helper ─── */
-function scrollToSection(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-}
-
-/* ─── Header ─── */
-function Header() {
-  const [scrolled, setScrolled] = useState(false)
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/90 backdrop-blur-md shadow-[0_1px_0_rgba(0,0,0,0.06)]'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
-        <button
-          onClick={() => scrollToSection('hero')}
-          className="text-sm font-semibold tracking-widest uppercase text-[#1a1a1a] transition-colors hover:text-[#E31E24]"
-        >
-          Lasse Müller
-        </button>
-        <nav className="hidden items-center gap-8 md:flex">
-          {['Projekte', 'Über mich', 'Kontakt'].map((item) => (
-            <button
-              key={item}
-              onClick={() => scrollToSection(item.toLowerCase().replace(' ', '-'))}
-              className="text-sm font-medium tracking-wide text-[#1a1a1a] transition-colors hover:text-[#E31E24]"
-            >
-              {item}
-            </button>
-          ))}
-        </nav>
-      </div>
-    </motion.header>
-  )
-}
-
-/* ─── Hero Section ─── */
-function Hero() {
-  return (
-    <section
-      id="hero"
-      className="relative flex h-screen min-h-[600px] items-center justify-center overflow-hidden"
-    >
-      {/* Subtle background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/portfolio/page_1.jpg')" }}
-      >
-        <div className="absolute inset-0 bg-white/85" />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-        >
-          <h1 className="text-5xl font-bold tracking-tight text-[#1a1a1a] sm:text-7xl lg:text-8xl xl:text-9xl">
-            LASSE MÜLLER
-          </h1>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-          className="mt-6 flex items-center justify-center gap-3 text-lg font-light tracking-[0.25em] text-[#666] sm:text-xl"
-        >
-          <span>Kreativ</span>
-          <span className="h-px w-8 bg-[#E31E24]" />
-          <span>Design</span>
-          <span className="h-px w-8 bg-[#E31E24]" />
-          <span>Kommunikation</span>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-8 text-sm tracking-widest text-[#999] uppercase"
-        >
-          Portfolio 2025
-        </motion.div>
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.button
-        onClick={() => scrollToSection('projekte')}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#999] transition-colors hover:text-[#E31E24]"
-      >
-        <span className="text-xs tracking-widest uppercase">Scrollen</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-        >
-          <ChevronDown className="h-5 w-5" />
-        </motion.div>
-      </motion.button>
-    </section>
-  )
-}
-
 /* ─── Project Card ─── */
 function ProjectCard({
   project,
@@ -263,7 +156,7 @@ function ProjectModal({
   project: (typeof projects)[number]
   onClose: () => void
 }) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(1) // Start with first detail image
+  const [currentImageIndex, setCurrentImageIndex] = useState(1)
 
   const goToPrev = useCallback(() => {
     setCurrentImageIndex((prev) => (prev > 0 ? prev - 1 : project.images.length - 1))
@@ -273,7 +166,6 @@ function ProjectModal({
     setCurrentImageIndex((prev) => (prev < project.images.length - 1 ? prev + 1 : 0))
   }, [project.images.length])
 
-  // Lock body scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
@@ -281,7 +173,6 @@ function ProjectModal({
     }
   }, [])
 
-  // Close on Escape
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
@@ -302,10 +193,8 @@ function ProjectModal({
         className="fixed inset-0 z-[100] flex items-center justify-center"
         onClick={onClose}
       >
-        {/* Backdrop */}
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
 
-        {/* Modal content */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -337,7 +226,6 @@ function ProjectModal({
               />
             </AnimatePresence>
 
-            {/* Image navigation arrows */}
             {project.images.length > 1 && (
               <>
                 <button
@@ -352,7 +240,6 @@ function ProjectModal({
                 >
                   <ChevronRight className="h-4 w-4" />
                 </button>
-                {/* Dots indicator */}
                 <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-1.5 md:bottom-6">
                   {project.images.map((_, idx) => (
                     <button
@@ -403,26 +290,24 @@ function ProjectsSection() {
   const { setRef, isVisible } = useReveal(0.05)
 
   return (
-    <section id="projekte" className="bg-white px-6 py-24 lg:px-12 lg:py-32">
+    <section id="projects" className="bg-white py-24 px-6 md:py-32 md:px-12">
       <div className="mx-auto max-w-7xl">
-        {/* Section header */}
         <div ref={setRef}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <p className="text-xs font-medium tracking-[0.25em] text-[#E31E24] uppercase">
+            <span className="text-sm tracking-widest uppercase text-[#0a0a0a]/40 mb-4 block">
               Ausgewählte Arbeiten
-            </p>
-            <h2 className="mt-3 text-4xl font-bold tracking-tight text-[#1a1a1a] sm:text-5xl lg:text-6xl">
+            </span>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#0a0a0a] tracking-tighter">
               PROJEKTE
             </h2>
             <div className="mt-4 h-1 w-16 bg-[#E31E24]" />
           </motion.div>
         </div>
 
-        {/* Projects grid */}
         <div className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
           {projects.map((project, index) => (
             <ProjectCard
@@ -435,7 +320,6 @@ function ProjectsSection() {
         </div>
       </div>
 
-      {/* Project Modal */}
       <AnimatePresence>
         {selectedProject && (
           <ProjectModal
@@ -448,126 +332,24 @@ function ProjectsSection() {
   )
 }
 
-/* ─── About Section ─── */
-function AboutSection() {
-  const { setRef, isVisible } = useReveal(0.15)
-
-  return (
-    <section id="über-mich" className="bg-[#f8f8f8] px-6 py-24 lg:px-12 lg:py-32">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid gap-16 md:grid-cols-2 md:items-center">
-          {/* Left: Image */}
-          <motion.div
-            ref={setRef}
-            initial={{ opacity: 0, x: -40 }}
-            animate={isVisible ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="overflow-hidden"
-          >
-            <div
-              className="aspect-[4/5] w-full bg-cover bg-center"
-              style={{ backgroundImage: "url('/portfolio/page_1.jpg')" }}
-            />
-          </motion.div>
-
-          {/* Right: Text */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isVisible ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
-          >
-            <p className="text-xs font-medium tracking-[0.25em] text-[#E31E24] uppercase">
-              Über mich
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#1a1a1a] sm:text-4xl lg:text-5xl">
-              ÜBER MICH
-            </h2>
-            <div className="mt-4 h-1 w-16 bg-[#E31E24]" />
-            <p className="mt-8 text-base leading-relaxed text-[#555]">
-              Hallo, ich bin Lasse Müller — ein kreativer Kopf mit Leidenschaft für Design,
-              Kommunikation und visuelle Storytelling. Mein Fokus liegt auf der Entwicklung
-              von Kampagnen, die nicht nur auffallen, sondern auch bewegen.
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-[#555]">
-              Von strategischer Planung über konzeptionelle Ideenentwicklung bis hin zur
-              gestalterischen Umsetzung — ich begleite Projekte von der ersten Skizze bis
-              zum finalen Resultat. Meine Arbeit umfasst Webdesign, Social-Media-Konzepte,
-              Markenkommunikation und politische Kampagnen.
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-[#555]">
-              Ich bin davon überzeugt, dass gutes Design dann entsteht, wenn Kreativität
-              auf Strategie trifft. Jedes Projekt ist eine neue Chance, etwas
-              Besonderes zu schaffen.
-            </p>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ─── Footer / Contact Section ─── */
-function FooterSection() {
-  const { setRef, isVisible } = useReveal(0.15)
-
-  return (
-    <footer id="kontakt" className="bg-[#1a1a1a] px-6 py-24 lg:px-12 lg:py-32">
-      <div className="mx-auto max-w-7xl">
-        <div ref={setRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="text-center"
-          >
-            <p className="text-xs font-medium tracking-[0.25em] text-[#E31E24] uppercase">
-              Kontakt
-            </p>
-            <h2 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              LET&apos;S WORK
-              <br />
-              <span className="text-[#E31E24]">TOGETHER</span>
-            </h2>
-            <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-white/60">
-              Interesse an einer Zusammenarbeit? Ich freue mich auf Ihre Nachricht.
-            </p>
-            <motion.a
-              href="mailto:hello@lassemueller.de"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/20 px-8 py-3 text-sm font-medium tracking-wide text-white transition-all hover:border-[#E31E24] hover:text-[#E31E24]"
-            >
-              E-Mail schreiben
-              <ArrowUpRight className="h-4 w-4" />
-            </motion.a>
-          </motion.div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="mt-20 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
-          <p className="text-xs tracking-wide text-white/40">
-            © {new Date().getFullYear()} Lasse Müller. Alle Rechte vorbehalten.
-          </p>
-          <p className="text-xs tracking-wide text-white/40">
-            Kreativ · Design · Kommunikation
-          </p>
-        </div>
-      </div>
-    </footer>
-  )
-}
-
 /* ─── Main Page ─── */
 export default function Home() {
   return (
-    <>
+    <LanguageProvider>
+      <CustomCursor />
       <Header />
       <main>
         <Hero />
+        <StorytellingSection />
         <ProjectsSection />
-        <AboutSection />
-        <FooterSection />
+        <StatsSection />
+        <InteractiveDots />
+        <ResumeTimeline />
+        <QuoteSection />
+        <AISection />
+        <GWASection />
+        <ContactSection />
       </main>
-    </>
+    </LanguageProvider>
   )
 }
