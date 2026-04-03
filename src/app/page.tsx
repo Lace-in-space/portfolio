@@ -8,7 +8,6 @@ import CustomCursor from '@/components/CustomCursor'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import StorytellingSection from '@/components/StorytellingSection'
-import StatsSection from '@/components/StatsSection'
 import InteractiveDots from '@/components/InteractiveDots'
 import ResumeTimeline from '@/components/ResumeTimeline'
 import AISection from '@/components/AISection'
@@ -341,11 +340,10 @@ export default function Home() {
         <Hero />
         <StorytellingSection />
         <ProjectsSection />
-        <StatsSection />
-        <InteractiveDots />
         <ResumeTimeline />
         <GWASection />
         <AISection />
+        <InteractiveDots />
         <ContactSection />
       </main>
     </LanguageProvider>
