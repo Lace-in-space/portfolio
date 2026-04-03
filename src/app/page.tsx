@@ -11,7 +11,6 @@ import StorytellingSection from '@/components/StorytellingSection'
 import StatsSection from '@/components/StatsSection'
 import InteractiveDots from '@/components/InteractiveDots'
 import ResumeTimeline from '@/components/ResumeTimeline'
-import QuoteSection from '@/components/QuoteSection'
 import AISection from '@/components/AISection'
 import GWASection from '@/components/GWASection'
 import ContactSection from '@/components/ContactSection'
@@ -345,9 +344,8 @@ export default function Home() {
         <StatsSection />
         <InteractiveDots />
         <ResumeTimeline />
-        <QuoteSection />
-        <AISection />
         <GWASection />
+        <AISection />
         <ContactSection />
       </main>
     </LanguageProvider>
