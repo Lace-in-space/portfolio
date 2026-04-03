@@ -41,10 +41,11 @@ export default function CustomCursor() {
         transition: 'opacity 0.3s ease',
       }}
     >
-      {/* Solid dot with inverted color */}
+      {/* Solid dot — grayscale via mix-blend-mode: difference + gray base */}
       <div
-        className="absolute w-3 h-3 rounded-full bg-white"
+        className="absolute w-3 h-3 rounded-full"
         style={{
+          backgroundColor: 'rgb(128, 128, 128)',
           mixBlendMode: 'difference',
           transform: 'translate(-50%, -50%)',
         }}
