@@ -30,7 +30,7 @@ function AnimatedWord({ text, index }: { text: string; index: number }) {
             }}
             className="inline-block text-5xl md:text-7xl lg:text-[8rem] font-black tracking-tighter"
             style={{
-              color: index % 2 === 0 ? '#0a0a0a' : '#E31E24',
+              color: index % 2 === 0 ? '#0a0a0a' : '#5bffc2',
               perspective: '500px',
             }}
           >

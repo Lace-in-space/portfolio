@@ -42,7 +42,7 @@ export default function StorytellingSection() {
               <div
                 className="absolute inset-0"
                 style={{
-                  background: 'linear-gradient(45deg, #0a0a0a, #1a1a2e, #E31E24, #0a0a0a)',
+                  background: 'linear-gradient(45deg, #0a0a0a, #1a1a2e, #5bffc2, #0a0a0a)',
                   backgroundSize: '400% 400%',
                   animation: 'gradientShift 8s ease infinite',
                 }}
@@ -79,7 +79,7 @@ export default function StorytellingSection() {
         >
           <div className="w-48 h-1 bg-white/10 rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-[#E31E24] rounded-full"
+              className="h-full bg-[#5bffc2] rounded-full"
               style={{ scaleX: scrollYProgress, transformOrigin: 'left' }}
             />
           </div>

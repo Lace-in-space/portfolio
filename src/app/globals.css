@@ -103,7 +103,7 @@ html {
 
 /* Selection color — red accent */
 ::selection {
-  background-color: #E31E24;
+  background-color: #5bffc2;
   color: white;
 }
 
@@ -117,7 +117,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #E31E24;
+  background: #5bffc2;
   border-radius: 1px;
 }
 

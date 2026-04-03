@@ -89,7 +89,7 @@ export default function ContactSection() {
                   type="text"
                   value={formState.name}
                   onChange={e => setFormState(prev => ({ ...prev, name: e.target.value }))}
-                  className="w-full bg-transparent border-b border-white/20 text-white py-3 text-lg focus:border-[#E31E24] focus:outline-none transition-colors"
+                  className="w-full bg-transparent border-b border-white/20 text-white py-3 text-lg focus:border-[#5bffc2] focus:outline-none transition-colors"
                   placeholder={t('Ihr Name', 'Your Name')}
                 />
               </div>
@@ -101,7 +101,7 @@ export default function ContactSection() {
                   type="email"
                   value={formState.email}
                   onChange={e => setFormState(prev => ({ ...prev, email: e.target.value }))}
-                  className="w-full bg-transparent border-b border-white/20 text-white py-3 text-lg focus:border-[#E31E24] focus:outline-none transition-colors"
+                  className="w-full bg-transparent border-b border-white/20 text-white py-3 text-lg focus:border-[#5bffc2] focus:outline-none transition-colors"
                   placeholder="your@email.com"
                 />
               </div>
@@ -113,7 +113,7 @@ export default function ContactSection() {
                   value={formState.message}
                   onChange={e => setFormState(prev => ({ ...prev, message: e.target.value }))}
                   rows={4}
-                  className="w-full bg-transparent border-b border-white/20 text-white py-3 text-lg focus:border-[#E31E24] focus:outline-none transition-colors resize-none"
+                  className="w-full bg-transparent border-b border-white/20 text-white py-3 text-lg focus:border-[#5bffc2] focus:outline-none transition-colors resize-none"
                   placeholder={t('Ihre Nachricht...', 'Your message...')}
                 />
               </div>
@@ -122,7 +122,7 @@ export default function ContactSection() {
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="bg-[#E31E24] text-white px-8 py-4 text-sm tracking-widest uppercase font-medium hover:bg-[#c4191f] transition-colors"
+                className="bg-[#5bffc2] text-white px-8 py-4 text-sm tracking-widest uppercase font-medium hover:bg-[#c4191f] transition-colors"
               >
                 {submitted
                   ? t('Gesendet! ✓', 'Sent! ✓')
@@ -144,7 +144,7 @@ export default function ContactSection() {
                 <a
                   key={social}
                   href="#"
-                  className="text-white/30 hover:text-[#E31E24] text-sm transition-colors"
+                  className="text-white/30 hover:text-[#5bffc2] text-sm transition-colors"
                 >
                   {social}
                 </a>
@@ -171,7 +171,7 @@ function Eye({ mouseX, mouseY }: { mouseX: number; mouseY: number }) {
         <motion.div
           animate={{ x: pupilPos.x, y: pupilPos.y }}
           transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-          className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#E31E24] relative"
+          className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#5bffc2] relative"
         >
           <div className="absolute top-2 left-3 w-3 h-3 rounded-full bg-white/30" />
         </motion.div>

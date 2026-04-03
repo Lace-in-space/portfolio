@@ -17,15 +17,15 @@ interface Project {
 }
 
 const projects: Project[] = [
-  { id: 1, titleDe: 'Brand Neustart', titleEn: 'Brand Restart', categoryDe: 'Branding', categoryEn: 'Branding', year: '2024', color: '#E31E24', image: 'https://picsum.photos/seed/brand-restart/600/400' },
+  { id: 1, titleDe: 'Brand Neustart', titleEn: 'Brand Restart', categoryDe: 'Branding', categoryEn: 'Branding', year: '2024', color: '#5bffc2', image: 'https://picsum.photos/seed/brand-restart/600/400' },
   { id: 2, titleDe: 'Digitaler Wandel', titleEn: 'Digital Shift', categoryDe: 'Webdesign', categoryEn: 'Web Design', year: '2024', color: '#1a1a2e', image: 'https://picsum.photos/seed/digital-shift/600/400' },
   { id: 3, titleDe: 'Visuelle Identität', titleEn: 'Visual Identity', categoryDe: 'Identität', categoryEn: 'Identity', year: '2023', color: '#16213e', image: 'https://picsum.photos/seed/visual-id/600/400' },
   { id: 4, titleDe: 'Motion Graphics', titleEn: 'Motion Graphics', categoryDe: 'Animation', categoryEn: 'Animation', year: '2023', color: '#0f3460', image: 'https://picsum.photos/seed/motion-gfx/600/400' },
-  { id: 5, titleDe: 'App Interface', titleEn: 'App Interface', categoryDe: 'UI/UX', categoryEn: 'UI/UX', year: '2023', color: '#E31E24', image: 'https://picsum.photos/seed/app-interface/600/400' },
+  { id: 5, titleDe: 'App Interface', titleEn: 'App Interface', categoryDe: 'UI/UX', categoryEn: 'UI/UX', year: '2023', color: '#5bffc2', image: 'https://picsum.photos/seed/app-interface/600/400' },
   { id: 6, titleDe: 'Kampagne', titleEn: 'Campaign', categoryDe: 'Kampagne', categoryEn: 'Campaign', year: '2023', color: '#533483', image: 'https://picsum.photos/seed/campaign-01/600/400' },
   { id: 7, titleDe: 'Editorial Design', titleEn: 'Editorial Design', categoryDe: 'Print', categoryEn: 'Print', year: '2022', color: '#2b2d42', image: 'https://picsum.photos/seed/editorial-01/600/400' },
   { id: 8, titleDe: 'Fotografie', titleEn: 'Photography', categoryDe: 'Foto', categoryEn: 'Photo', year: '2022', color: '#8d99ae', image: 'https://picsum.photos/seed/photography-01/600/400' },
-  { id: 9, titleDe: 'Social Media', titleEn: 'Social Media', categoryDe: 'Social', categoryEn: 'Social', year: '2022', color: '#E31E24', image: 'https://picsum.photos/seed/social-media-01/600/400' },
+  { id: 9, titleDe: 'Social Media', titleEn: 'Social Media', categoryDe: 'Social', categoryEn: 'Social', year: '2022', color: '#5bffc2', image: 'https://picsum.photos/seed/social-media-01/600/400' },
   { id: 10, titleDe: 'Verpackung', titleEn: 'Packaging', categoryDe: 'Packaging', categoryEn: 'Packaging', year: '2021', color: '#3a0ca3', image: 'https://picsum.photos/seed/packaging-01/600/400' },
   { id: 11, titleDe: 'Typography', titleEn: 'Typography', categoryDe: 'Typografie', categoryEn: 'Typography', year: '2021', color: '#1a1a2e', image: 'https://picsum.photos/seed/typography-01/600/400' },
   { id: 12, titleDe: '3D Visualisierung', titleEn: '3D Visualization', categoryDe: '3D', categoryEn: '3D', year: '2021', color: '#0f3460', image: 'https://picsum.photos/seed/3d-viz-01/600/400' },
@@ -91,7 +91,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           initial={false}
           animate={{ width: hovered ? 48 : 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="h-0.5 bg-[#E31E24] mt-3"
+          className="h-0.5 bg-[#5bffc2] mt-3"
         />
 
         {/* Arrow navigation */}
@@ -115,7 +115,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       </motion.div>
 
       {/* Bottom border */}
-      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/0 group-hover:bg-[#E31E24] transition-colors duration-300" />
+      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/0 group-hover:bg-[#5bffc2] transition-colors duration-300" />
     </motion.div>
   )
 }

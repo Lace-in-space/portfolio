@@ -24,7 +24,7 @@ const timeline: TimelineEntry[] = [
     companyEn: 'Freelance',
     descriptionDe: 'Leitung kreativer Projekte für internationale Kunden',
     descriptionEn: 'Leading creative projects for international clients',
-    color: '#E31E24',
+    color: '#5bffc2',
   },
   {
     year: '2023',
@@ -64,7 +64,7 @@ const timeline: TimelineEntry[] = [
     companyEn: 'Digital Agency',
     descriptionDe: 'Webentwicklung und Designunterstützung',
     descriptionEn: 'Web development and design support',
-    color: '#E31E24',
+    color: '#5bffc2',
   },
   {
     year: '2020',
@@ -156,7 +156,7 @@ export default function ResumeTimeline() {
                 </div>
 
                 <div className="ml-8 pt-2">
-                  <span className="text-sm text-[#E31E24] font-mono">{entry.year}</span>
+                  <span className="text-sm text-[#5bffc2] font-mono">{entry.year}</span>
                   <h3 className="text-2xl md:text-3xl font-bold text-white mt-1 tracking-tight">{title}</h3>
                   <p className="text-white/40 mt-1">{company}</p>
                   <p className="text-white/60 mt-3 text-sm max-w-sm">{description}</p>
@@ -171,7 +171,7 @@ export default function ResumeTimeline() {
       <div className="mt-12 mx-6 md:mx-12">
         <div className="w-full h-px bg-white/10">
           <motion.div
-            className="h-full bg-[#E31E24]"
+            className="h-full bg-[#5bffc2]"
             style={{ scaleX: scrollYProgress, transformOrigin: 'left' }}
           />
         </div>

@@ -52,7 +52,7 @@ function AnimatedCounter({ value, suffix, labelDe, labelEn, index }: { value: nu
     >
       <div className="text-6xl md:text-8xl lg:text-9xl font-bold text-white tracking-tighter">
         {count}
-        <span className="text-[#E31E24]">{suffix}</span>
+        <span className="text-[#5bffc2]">{suffix}</span>
       </div>
       <div className="text-lg md:text-xl text-white/40 mt-2 tracking-widest uppercase">
         {label}
@@ -128,8 +128,8 @@ export default function StatsSection() {
       </motion.div>
 
       {/* Red line accents */}
-      <div className="absolute top-0 left-0 w-1 h-full bg-[#E31E24]" />
-      <div className="absolute top-0 right-0 w-1 h-full bg-[#E31E24]" />
+      <div className="absolute top-0 left-0 w-1 h-full bg-[#5bffc2]" />
+      <div className="absolute top-0 right-0 w-1 h-full bg-[#5bffc2]" />
     </section>
   )
 }

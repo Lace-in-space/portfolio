@@ -141,7 +141,7 @@ function ProjectCard({
 
       {/* Arrow indicator */}
       <div className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/0 transition-all duration-300 group-hover:bg-white group-hover:shadow-lg">
-        <ArrowUpRight className="h-4 w-4 text-white transition-colors duration-300 group-hover:text-[#E31E24]" />
+        <ArrowUpRight className="h-4 w-4 text-white transition-colors duration-300 group-hover:text-[#5bffc2]" />
       </div>
     </motion.div>
   )
@@ -205,7 +205,7 @@ function ProjectModal({
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#1a1a1a] shadow-md transition-colors hover:bg-[#E31E24] hover:text-white md:top-6 md:right-6"
+            className="absolute top-4 right-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#1a1a1a] shadow-md transition-colors hover:bg-[#5bffc2] hover:text-white md:top-6 md:right-6"
           >
             <X className="h-5 w-5" />
           </button>
@@ -229,13 +229,13 @@ function ProjectModal({
               <>
                 <button
                   onClick={goToPrev}
-                  className="absolute top-1/2 left-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-[#1a1a1a] shadow transition-colors hover:bg-[#E31E24] hover:text-white md:left-4"
+                  className="absolute top-1/2 left-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-[#1a1a1a] shadow transition-colors hover:bg-[#5bffc2] hover:text-white md:left-4"
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </button>
                 <button
                   onClick={goToNext}
-                  className="absolute top-1/2 right-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-[#1a1a1a] shadow transition-colors hover:bg-[#E31E24] hover:text-white md:right-4"
+                  className="absolute top-1/2 right-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-[#1a1a1a] shadow transition-colors hover:bg-[#5bffc2] hover:text-white md:right-4"
                 >
                   <ChevronRight className="h-4 w-4" />
                 </button>
@@ -246,7 +246,7 @@ function ProjectModal({
                       onClick={() => setCurrentImageIndex(idx)}
                       className={`h-1.5 rounded-full transition-all duration-300 ${
                         idx === currentImageIndex
-                          ? 'w-6 bg-[#E31E24]'
+                          ? 'w-6 bg-[#5bffc2]'
                           : 'w-1.5 bg-[#1a1a1a]/30 hover:bg-[#1a1a1a]/60'
                       }`}
                     />
@@ -258,13 +258,13 @@ function ProjectModal({
 
           {/* Right: Info */}
           <div className="flex max-h-[40vh] flex-col justify-center overflow-y-auto p-6 md:max-h-[90vh] md:w-[420px] md:p-10">
-            <p className="text-xs font-medium tracking-[0.2em] text-[#E31E24] uppercase">
+            <p className="text-xs font-medium tracking-[0.2em] text-[#5bffc2] uppercase">
               {project.client}
             </p>
             <h2 className="mt-3 text-2xl font-bold leading-tight text-[#1a1a1a] sm:text-3xl">
               {project.title}
             </h2>
-            <div className="mt-6 h-px w-12 bg-[#E31E24]" />
+            <div className="mt-6 h-px w-12 bg-[#5bffc2]" />
             <p className="mt-6 text-[15px] leading-relaxed text-[#555]">
               {project.description}
             </p>
@@ -303,7 +303,7 @@ function ProjectsSection() {
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#0a0a0a] tracking-tighter">
               PROJEKTE
             </h2>
-            <div className="mt-4 h-1 w-16 bg-[#E31E24]" />
+            <div className="mt-4 h-1 w-16 bg-[#5bffc2]" />
           </motion.div>
         </div>
 

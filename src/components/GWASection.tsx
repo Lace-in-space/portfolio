@@ -97,11 +97,11 @@ export default function GWASection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true }}
-                className="p-6 border border-[#0a0a0a]/10 hover:border-[#E31E24] transition-colors duration-300 group"
+                className="p-6 border border-[#0a0a0a]/10 hover:border-[#5bffc2] transition-colors duration-300 group"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-2xl">{award.medal}</span>
-                  <span className="text-sm text-[#E31E24] font-mono">{award.year}</span>
+                  <span className="text-sm text-[#5bffc2] font-mono">{award.year}</span>
                 </div>
                 <h3 className="text-xl font-bold text-[#0a0a0a]">{title}</h3>
                 <p className="text-[#0a0a0a]/40 mt-1 text-sm">{category}</p>
@@ -141,7 +141,7 @@ export default function GWASection() {
                     {String(index + 1).padStart(2, '0')}
                   </div>
                   <div className="relative">
-                    <div className="w-8 h-8 bg-[#E31E24] flex items-center justify-center text-white text-xs font-bold mb-4">
+                    <div className="w-8 h-8 bg-[#5bffc2] flex items-center justify-center text-white text-xs font-bold mb-4">
                       {index + 1}
                     </div>
                     <h4 className="text-lg font-bold text-[#0a0a0a] mb-2">{title}</h4>

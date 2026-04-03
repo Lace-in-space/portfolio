@@ -80,7 +80,7 @@ export default function AISection() {
             <path
               d="M 25% 45% C 35% 35%, 45% 40%, 52% 30%"
               fill="none"
-              stroke="#E31E24"
+              stroke="#5bffc2"
               strokeWidth="2"
               opacity="0.4"
               strokeDasharray="5,5"
@@ -88,7 +88,7 @@ export default function AISection() {
             <path
               d="M 72% 52% C 65% 60%, 60% 65%, 52% 70%"
               fill="none"
-              stroke="#E31E24"
+              stroke="#5bffc2"
               strokeWidth="2"
               opacity="0.4"
               strokeDasharray="5,5"
@@ -247,7 +247,7 @@ function NeuralNetWindow() {
                   y1={`${node.y}%`}
                   x2={`${other.x}%`}
                   y2={`${other.y}%`}
-                  stroke="#E31E24"
+                  stroke="#5bffc2"
                   strokeWidth="0.5"
                   opacity="0.3"
                 />
@@ -262,7 +262,7 @@ function NeuralNetWindow() {
             cx={`${node.x}%`}
             cy={`${node.y}%`}
             r="3"
-            fill="#E31E24"
+            fill="#5bffc2"
             opacity="0.6"
           >
             <animate

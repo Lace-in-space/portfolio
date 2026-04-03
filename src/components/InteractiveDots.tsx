@@ -20,7 +20,7 @@ const tools: Tool[] = [
   { name: 'Figma', abbr: 'Fi', color: '#A259FF' },
   { name: 'Blender', abbr: 'Bl', color: '#EA7600' },
   { name: 'Cinema 4D', abbr: 'C4', color: '#011A6A' },
-  { name: 'DaVinci Resolve', abbr: 'DR', color: '#E31E24' },
+  { name: 'DaVinci Resolve', abbr: 'DR', color: '#5bffc2' },
   { name: 'Audition', abbr: 'Au', color: '#9999FF' },
   { name: 'Sketch', abbr: 'Sk', color: '#F7B500' },
   { name: 'XD', abbr: 'Xd', color: '#FF61F6' },

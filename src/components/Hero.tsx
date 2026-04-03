@@ -109,7 +109,7 @@ export default function Hero() {
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute bottom-0 left-0 right-0 h-1 bg-[#E31E24] origin-left"
+        className="absolute bottom-0 left-0 right-0 h-1 bg-[#5bffc2] origin-left"
       />
     </section>
   )
