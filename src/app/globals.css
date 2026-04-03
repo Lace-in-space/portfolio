@@ -87,15 +87,6 @@
   }
 }
 
-/* Custom styles for portfolio */
-
-/* Hide default cursor on desktop */
-@media (pointer: fine) {
-  * {
-    cursor: none !important;
-  }
-}
-
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
@@ -103,43 +94,26 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Selection color */
+/* Selection color — red accent */
 ::selection {
   background-color: #E31E24;
   color: white;
 }
 
-/* Scrollbar styling */
+/* Thin scrollbar — dark on white */
 ::-webkit-scrollbar {
   width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #E31E24;
+  background: #1a1a1a;
   border-radius: 2px;
 }
 
-/* Gradient animation keyframes */
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Stagger animation helper */
-.stagger-child {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: staggerIn 0.6s ease forwards;
-}
-
-@keyframes staggerIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: #E31E24;
 }

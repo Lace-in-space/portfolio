@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,16 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ivan Kolesnikov — Creative Director & Designer",
-  description: "Portfolio of Ivan Kolesnikov — Creative Director, Designer, and Visual Storyteller based in Berlin.",
-  keywords: ["Ivan Kolesnikov", "Creative Director", "Designer", "Portfolio", "Berlin", "Communication Design"],
-  authors: [{ name: "Ivan Kolesnikov" }],
-  icons: {
-    icon: "/logo.png",
-  },
+  title: "Lasse Müller — Portfolio",
+  description: "Portfolio von Lasse Müller — Kreativ, Design & Kommunikation.",
+  keywords: ["Lasse Müller", "Portfolio", "Kreativ", "Design", "Kommunikation"],
+  authors: [{ name: "Lasse Müller" }],
   openGraph: {
-    title: "Ivan Kolesnikov — Portfolio",
-    description: "Creative Director & Designer based in Berlin",
+    title: "Lasse Müller — Portfolio",
+    description: "Kreativ | Design | Kommunikation",
     type: "website",
   },
 };
@@ -34,13 +30,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="de" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{ backgroundColor: '#0a0a0a', color: '#ffffff' }}
+        style={{ backgroundColor: '#ffffff', color: '#1a1a1a' }}
       >
         {children}
-        <Toaster />
       </body>
     </html>
   );
