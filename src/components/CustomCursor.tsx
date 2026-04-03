@@ -34,21 +34,20 @@ export default function CustomCursor() {
 
   return (
     <div
-      className="fixed top-0 left-0 z-[9999] pointer-events-none"
+      className="fixed pointer-events-none"
       style={{
-        transform: `translate(${position.x}px, ${position.y}px)`,
+        left: position.x - 6,
+        top: position.y - 6,
+        width: 12,
+        height: 12,
         opacity: isVisible ? 1 : 0,
         transition: 'opacity 0.3s ease',
+        mixBlendMode: 'difference',
+        zIndex: 9999,
       }}
     >
-      {/* Solid dot — same effect as nav: white + mix-blend-mode: difference */}
-      <div
-        className="absolute w-3 h-3 rounded-full bg-white"
-        style={{
-          mixBlendMode: 'difference',
-          transform: 'translate(-50%, -50%)',
-        }}
-      />
+      {/* White dot — blended via parent's mix-blend-mode against page content */}
+      <div className="w-full h-full rounded-full bg-white" />
     </div>
   )
 }
