@@ -3,7 +3,6 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
-import ScrambleText from './ScrambleText'
 
 interface Tool {
   name: string
@@ -24,7 +23,6 @@ const tools: Tool[] = [
   { name: 'DaVinci Resolve', abbr: 'DR', color: '#E31E24' },
   { name: 'Audition', abbr: 'Au', color: '#9999FF' },
   { name: 'Sketch', abbr: 'Sk', color: '#F7B500' },
-  { name: 'After Effects', abbr: 'Ae', color: '#9999FF' },
   { name: 'XD', abbr: 'Xd', color: '#FF61F6' },
   { name: 'React', abbr: 'Re', color: '#61DAFB' },
   { name: 'HTML/CSS', abbr: 'HT', color: '#E34F26' },
@@ -65,14 +63,7 @@ export default function InteractiveDots() {
             {t('Werkzeuge', 'Tools')}
           </span>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#0a0a0a] tracking-tighter">
-            {isInView ? (
-              <ScrambleText
-                text={t('Software & Tools', 'Software & Tools')}
-                trigger={true}
-              />
-            ) : (
-              t('Software & Tools', 'Software & Tools')
-            )}
+            {t('Software & Tools', 'Software & Tools')}
           </h2>
         </motion.div>
 

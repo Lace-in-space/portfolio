@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
-import ScrambleOnChange from './ScrambleOnChange'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 export default function Header() {
   const { lang, toggleLanguage, t } = useLanguage()
@@ -49,7 +48,7 @@ export default function Header() {
             scrolled ? 'text-[#0a0a0a]' : 'text-white'
           }`}
         >
-          <ScrambleOnChange text={t('Projekte', 'Projects')} />
+          {t('Projekte', 'Projects')}
         </a>
         <a
           href="#resume"
@@ -57,7 +56,7 @@ export default function Header() {
             scrolled ? 'text-[#0a0a0a]' : 'text-white'
           }`}
         >
-          <ScrambleOnChange text={t('Lebenslauf', 'Resume')} />
+          {t('Lebenslauf', 'Resume')}
         </a>
         <a
           href="#contact"
@@ -65,7 +64,7 @@ export default function Header() {
             scrolled ? 'text-[#0a0a0a]' : 'text-white'
           }`}
         >
-          <ScrambleOnChange text={t('Kontakt', 'Contact')} />
+          {t('Kontakt', 'Contact')}
         </a>
       </div>
     </motion.header>

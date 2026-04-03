@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
-import ScrambleText from './ScrambleText'
 
 export default function StorytellingSection() {
   const { t } = useLanguage()
@@ -63,15 +62,7 @@ export default function StorytellingSection() {
           className="relative z-10 text-center px-8"
         >
           <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold text-white tracking-tighter">
-            {inView ? (
-              <ScrambleText
-                text={t('Geschichte erzählen', 'Telling Stories')}
-                trigger={true}
-                speed={25}
-              />
-            ) : (
-              t('Geschichte erzählen', 'Telling Stories')
-            )}
+            {t('Geschichte erzählen', 'Telling Stories')}
           </h2>
           <p className="mt-4 text-white/50 text-lg md:text-xl max-w-2xl mx-auto">
             {t(

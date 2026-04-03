@@ -3,7 +3,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
-import ScrambleText from './ScrambleText'
 
 interface TimelineEntry {
   year: string
@@ -114,14 +113,7 @@ export default function ResumeTimeline() {
             {t('Werdegang', 'Background')}
           </span>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter">
-            {isInView ? (
-              <ScrambleText
-                text={t('Lebenslauf', 'Resume')}
-                trigger={true}
-              />
-            ) : (
-              t('Lebenslauf', 'Resume')
-            )}
+            {t('Lebenslauf', 'Resume')}
           </h2>
         </motion.div>
       </div>

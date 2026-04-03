@@ -3,7 +3,6 @@
 import { useRef, useState, useCallback } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
-import ScrambleText from './ScrambleText'
 
 export default function ContactSection() {
   const { t } = useLanguage()
@@ -40,14 +39,7 @@ export default function ContactSection() {
             {t('Kontaktieren Sie mich', 'Get in Touch')}
           </span>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter">
-            {isInView ? (
-              <ScrambleText
-                text={t('Kontakt', 'Contact')}
-                trigger={true}
-              />
-            ) : (
-              t('Kontakt', 'Contact')
-            )}
+            {t('Kontakt', 'Contact')}
           </h2>
         </motion.div>
 

@@ -41,8 +41,18 @@ export default function CustomCursor() {
         transition: 'opacity 0.3s ease',
       }}
     >
+      {/* Outer ring */}
       <div
-        className="w-3 h-3 rounded-full bg-white"
+        className="absolute w-8 h-8 rounded-full border-2 border-white"
+        style={{
+          mixBlendMode: 'difference',
+          transform: 'translate(-50%, -50%)',
+          transition: 'width 0.2s ease, height 0.2s ease',
+        }}
+      />
+      {/* Inner dot */}
+      <div
+        className="absolute w-1.5 h-1.5 rounded-full bg-white"
         style={{
           mixBlendMode: 'difference',
           transform: 'translate(-50%, -50%)',

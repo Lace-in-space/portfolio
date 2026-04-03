@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useSyncExternalStore } from 'react'
 import { motion } from 'framer-motion'
-import ScrambleText from './ScrambleText'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function Hero() {
@@ -71,9 +70,9 @@ export default function Hero() {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         >
           <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-white tracking-tighter leading-none mb-4">
-            <ScrambleText text="IVAN" trigger={true} revealDelay={20} />
+            IVAN
             <br />
-            <ScrambleText text="KOLESNIKOV" trigger={true} revealDelay={15} />
+            KOLESNIKOV
           </h1>
         </motion.div>
 
@@ -83,12 +82,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-lg md:text-xl text-white/60 tracking-widest uppercase mt-6"
         >
-          <ScrambleText
-            text={t('Kreativ Direktor & Designer', 'Creative Director & Designer')}
-            trigger={true}
-            revealDelay={10}
-            speed={40}
-          />
+          {t('Kreativ Direktor & Designer', 'Creative Director & Designer')}
         </motion.p>
 
         <motion.div

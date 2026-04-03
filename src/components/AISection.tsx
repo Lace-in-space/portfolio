@@ -3,7 +3,6 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
-import ScrambleText from './ScrambleText'
 import { useEffect, useCallback } from 'react'
 
 export default function AISection() {
@@ -29,14 +28,7 @@ export default function AISection() {
             {t('Künstliche Intelligenz', 'Artificial Intelligence')}
           </span>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter">
-            {isInView ? (
-              <ScrambleText
-                text={t('KI & Design', 'AI & Design')}
-                trigger={true}
-              />
-            ) : (
-              t('KI & Design', 'AI & Design')
-            )}
+            {t('KI & Design', 'AI & Design')}
           </h2>
         </motion.div>
 
@@ -306,7 +298,7 @@ function OutputWindow() {
 
 function MatrixRain() {
   const columns = 30
-  const chars = 'アイウエオカキクケコ01010101'
+  const chars = '01010101'
 
   return (
     <div className="absolute inset-0 flex gap-1 justify-center overflow-hidden">

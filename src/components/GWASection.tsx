@@ -3,7 +3,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
-import ScrambleText from './ScrambleText'
 
 const steps = [
   {
@@ -64,14 +63,7 @@ export default function GWASection() {
             {t('Auszeichnungen', 'Awards')}
           </span>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#0a0a0a] tracking-tighter">
-            {isInView ? (
-              <ScrambleText
-                text={t('GWA & Auszeichnungen', 'GWA & Awards')}
-                trigger={true}
-              />
-            ) : (
-              t('GWA & Auszeichnungen', 'GWA & Awards')
-            )}
+            {t('GWA & Auszeichnungen', 'GWA & Awards')}
           </h2>
         </motion.div>
 

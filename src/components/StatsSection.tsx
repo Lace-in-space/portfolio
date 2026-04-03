@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
-import ScrambleText from './ScrambleText'
 
 interface StatItem {
   value: number
@@ -33,7 +32,6 @@ function AnimatedCounter({ value, suffix, labelDe, labelEn, index }: { value: nu
     const animate = () => {
       const elapsed = Date.now() - startTime
       const progress = Math.min(elapsed / duration, 1)
-      // Ease out cubic
       const eased = 1 - Math.pow(1 - progress, 3)
       start = Math.round(eased * value)
       setCount(start)
@@ -111,14 +109,7 @@ export default function StatsSection() {
           className="text-center mb-16 md:mb-24"
         >
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter">
-            {isInView ? (
-              <ScrambleText
-                text={t('Zahlen & Fakten', 'Numbers & Facts')}
-                trigger={true}
-              />
-            ) : (
-              t('Zahlen & Fakten', 'Numbers & Facts')
-            )}
+            {t('Zahlen & Fakten', 'Numbers & Facts')}
           </h2>
         </motion.div>
 
