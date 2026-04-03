@@ -3,7 +3,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
-import ScrambleText from './ScrambleText'
 
 const words = [
   { de: 'GEFALLEN', en: 'FALLEN' },

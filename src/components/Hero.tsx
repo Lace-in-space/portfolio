@@ -70,9 +70,9 @@ export default function Hero() {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         >
           <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-white tracking-tighter leading-none mb-4">
-            IVAN
+            LASSE
             <br />
-            KOLESNIKOV
+            MÜLLER
           </h1>
         </motion.div>
 
