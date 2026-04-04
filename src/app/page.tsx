@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ArrowUpRight } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 import CustomCursor from '@/components/CustomCursor'
 import Header from '@/components/Header'
@@ -138,10 +138,7 @@ function ProjectCard({
         </h3>
       </div>
 
-      {/* Arrow indicator */}
-      <div className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/0 transition-all duration-300 group-hover:bg-white group-hover:shadow-lg">
-        <ArrowUpRight className="h-4 w-4 text-white transition-colors duration-300 group-hover:text-[#5bffc2]" />
-      </div>
+
     </motion.div>
   )
 }
@@ -225,19 +222,33 @@ function ProjectModal({
             </AnimatePresence>
 
             {project.images.length > 1 && (
-              <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-1.5 md:bottom-4">
-                {project.images.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentImageIndex(idx)}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      idx === currentImageIndex
-                        ? 'w-6 bg-[#5bffc2]'
-                        : 'w-1.5 bg-white/40 hover:bg-white/70'
-                    }`}
-                  />
-                ))}
-              </div>
+              <>
+                <button
+                  onClick={goToPrev}
+                  className="absolute top-1/2 left-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-[#1a1a1a] shadow transition-colors hover:bg-[#5bffc2] hover:text-white md:left-4"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={goToNext}
+                  className="absolute top-1/2 right-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-[#1a1a1a] shadow transition-colors hover:bg-[#5bffc2] hover:text-white md:right-4"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+                <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-1.5 md:bottom-6">
+                  {project.images.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentImageIndex(idx)}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        idx === currentImageIndex
+                          ? 'w-6 bg-[#5bffc2]'
+                          : 'w-1.5 bg-[#1a1a1a]/30 hover:bg-[#1a1a1a]/60'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </>
             )}
           </div>
 
