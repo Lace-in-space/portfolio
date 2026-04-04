@@ -88,6 +88,9 @@ const timeline: TimelineEntry[] = [
   },
 ]
 
+/* How far the carousel needs to travel (percentage of its own width) */
+const maxTravel = (1 - 1 / timeline.length) * 100
+
 export default function ResumeTimeline() {
   const { t, lang } = useLanguage()
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -98,24 +101,28 @@ export default function ResumeTimeline() {
     offset: ['start start', 'end end'],
   })
 
-  /* Carousel only moves between 0% and ~70% of the section scroll.
-     First ~15%: section enters viewport (nothing moves).
-     Last ~15%: section leaves viewport (already done). */
-  const translateX = useTransform(
-    scrollYProgress,
-    [0.15, 0.75],
-    ['0%', `-${(1 - 1 / timeline.length) * 100}%`]
-  )
+  /*
+   * Section is 350vh tall.
+   * Sticky inner = 100vh → pins at top-0 while the parent scrolls.
+   * The user gets ~250vh of scroll while the viewport is "stuck" on this section.
+   *
+   * Carousel movement:
+   *   scrollYProgress  0.00 → 0.05  : section just arrived, nothing moves yet
+   *   scrollYProgress  0.05 → 0.85  : carousel scrolls through all entries
+   *   scrollYProgress  0.85 → 1.00  : carousel done, viewport begins to leave
+   */
+  const translateX = useTransform(scrollYProgress, [0.05, 0.85], ['0%', `-${maxTravel}%`])
+  const scrollHintOpacity = useTransform(scrollYProgress, [0.05, 0.15], [1, 0])
+  const progressScale = useTransform(scrollYProgress, [0.05, 0.85], [0, 1])
 
   return (
     <section
       id="resume"
       ref={sectionRef}
-      /* Extra height so the carousel has room to scroll fully before the next section appears */
-      className="bg-[#0a0a0a] py-24 md:py-32 relative overflow-hidden"
-      style={{ minHeight: '250vh' }}
+      className="bg-[#0a0a0a] relative overflow-hidden"
+      style={{ height: '350vh' }}
     >
-      {/* Sticky viewport that pins while scrolling through carousel */}
+      {/* Sticky viewport — pins at top while the section scrolls past */}
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
         {/* Header */}
         <div className="px-6 md:px-12 mb-12 md:mb-16">
@@ -133,10 +140,10 @@ export default function ResumeTimeline() {
           </motion.div>
         </div>
 
-        {/* Scroll hint */}
+        {/* Scroll hint — fades out once carousel starts moving */}
         <motion.div
           className="px-6 md:px-12 mb-8 flex items-center gap-2 text-white/30"
-          style={{ opacity: useTransform(scrollYProgress, [0.15, 0.25], [1, 0]) }}
+          style={{ opacity: scrollHintOpacity }}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="animate-pulse">
             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -188,13 +195,13 @@ export default function ResumeTimeline() {
           </motion.div>
         </div>
 
-        {/* Bottom progress */}
+        {/* Bottom progress bar */}
         <div className="mt-12 mx-6 md:mx-12">
           <div className="w-full h-px bg-white/10">
             <motion.div
               className="h-full bg-[#5bffc2]"
               style={{
-                scaleX: useTransform(scrollYProgress, [0.15, 0.75], [0, 1]),
+                scaleX: progressScale,
                 transformOrigin: 'left',
               }}
             />
