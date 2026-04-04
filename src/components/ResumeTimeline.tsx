@@ -119,7 +119,7 @@ export default function ResumeTimeline() {
     <section
       id="resume"
       ref={sectionRef}
-      className="bg-[#0a0a0a] relative overflow-hidden"
+      className="bg-[#0a0a0a] relative"
       style={{ height: '350vh' }}
     >
       {/* Sticky viewport — pins at top while the section scrolls past */}
