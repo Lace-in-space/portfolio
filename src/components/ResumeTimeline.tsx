@@ -78,8 +78,15 @@ const timeline: TimelineEntry[] = [
   },
 ]
 
-/* How far the carousel needs to travel (percentage of its own width) */
-const maxTravel = (1 - 1 / timeline.length) * 100
+/*
+ * Calculate how far the carousel must travel so the LAST entry is centered.
+ * We need to scroll: (n-1) * itemWidth + halfItemWidth - halfViewportWidth
+ * As a fraction of the total carousel width (n * itemWidth + (n-1) * gap + padding),
+ * this is approximately: (1 - 1.5 / n) for evenly-spaced items with padding.
+ * For 6 items → ~75%
+ */
+const numEntries = timeline.length
+const maxTravel = Math.max(0, (1 - 1.5 / numEntries) * 100)
 
 export default function ResumeTimeline() {
   const { t, lang } = useLanguage()
@@ -92,25 +99,20 @@ export default function ResumeTimeline() {
   })
 
   /*
-   * Section is 350vh tall.
-   * Sticky inner = 100vh → pins at top-0 while the parent scrolls.
-   * The user gets ~250vh of scroll while the viewport is "stuck" on this section.
-   *
-   * Carousel movement:
-   *   scrollYProgress  0.00 → 0.05  : section just arrived, nothing moves yet
-   *   scrollYProgress  0.05 → 0.85  : carousel scrolls through all entries
-   *   scrollYProgress  0.85 → 1.00  : carousel done, viewport begins to leave
+   * Section is tall enough so the viewport stays pinned while the carousel
+   * scrolls all the way until the last entry is centered.
+   * Then a small buffer allows the viewport to release and continue to next section.
    */
-  const translateX = useTransform(scrollYProgress, [0.05, 0.85], ['0%', `-${maxTravel}%`])
-  const scrollHintOpacity = useTransform(scrollYProgress, [0.05, 0.15], [1, 0])
-  const progressScale = useTransform(scrollYProgress, [0.05, 0.85], [0, 1])
+  const translateX = useTransform(scrollYProgress, [0.04, 0.88], ['0%', `-${maxTravel}%`])
+  const scrollHintOpacity = useTransform(scrollYProgress, [0.04, 0.14], [1, 0])
+  const progressScale = useTransform(scrollYProgress, [0.04, 0.88], [0, 1])
 
   return (
     <section
       id="resume"
       ref={sectionRef}
       className="bg-[#0a0a0a] relative"
-      style={{ height: '350vh' }}
+      style={{ height: '500vh' }}
     >
       {/* Sticky viewport — pins at top while the section scrolls past */}
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
