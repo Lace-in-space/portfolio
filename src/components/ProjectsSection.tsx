@@ -43,13 +43,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: true, margin: '-50px' }}
-      className="group relative aspect-[4/3] overflow-hidden cursor-pointer rounded-sm"
+      className="group relative overflow-hidden cursor-pointer rounded-sm"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Image */}
+      {/* Image — natural proportions drive the card size */}
       <div
-        className="absolute inset-0 transition-all duration-700"
+        className="transition-all duration-700"
         style={{
           filter: hovered ? 'grayscale(0%) brightness(0.7)' : 'grayscale(100%) brightness(0.8)',
           transform: hovered ? 'scale(1.05)' : 'scale(1)',
@@ -58,7 +58,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <img
           src={project.image}
           alt={title}
-          className="w-full h-full object-cover"
+          className="w-full h-auto block"
           loading="lazy"
         />
       </div>
@@ -71,48 +71,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           opacity: hovered ? 0.3 : 0,
         }}
       />
-
-      {/* Content overlay */}
-      <motion.div
-        initial={false}
-        animate={{
-          opacity: hovered ? 1 : 0,
-          y: hovered ? 0 : 20,
-        }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-0 flex flex-col justify-end p-6 text-white"
-      >
-        <span className="text-xs tracking-widest uppercase text-white/60 mb-2">
-          {category} — {project.year}
-        </span>
-        <h3 className="text-2xl md:text-3xl font-bold tracking-tight">{title}</h3>
-
-        <motion.div
-          initial={false}
-          animate={{ width: hovered ? 48 : 0 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-          className="h-0.5 bg-[#5bffc2] mt-3"
-        />
-
-        {/* Arrow navigation */}
-        <div className="absolute top-6 right-6 flex items-center gap-3">
-          <motion.div
-            animate={{ x: hovered ? 0 : -10, opacity: hovered ? 1 : 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-            className="text-sm text-white/60"
-          >
-            {String(project.id).padStart(2, '0')}
-          </motion.div>
-          <motion.div
-            animate={{ rotate: hovered ? 0 : -45, opacity: hovered ? 1 : 0 }}
-            transition={{ duration: 0.3, delay: 0.15 }}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-              <path d="M7 17L17 7M17 7H7M17 7V17" />
-            </svg>
-          </motion.div>
-        </div>
-      </motion.div>
 
       {/* Bottom border */}
       <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/0 group-hover:bg-[#5bffc2] transition-colors duration-300" />
