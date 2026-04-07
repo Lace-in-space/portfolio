@@ -120,23 +120,18 @@ function ProjectCard({
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
       onClick={onClick}
-      className="group relative cursor-pointer overflow-hidden bg-[#f5f5f5]"
+      className="group relative cursor-pointer overflow-hidden"
     >
-      {/* Image */}
-      <div className="relative aspect-[3/4] overflow-hidden sm:aspect-[4/3]">
-        <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
-          style={{ backgroundImage: `url('${project.cover}')` }}
+      {/* Image — natural proportions drive the card size */}
+      <div className="overflow-hidden">
+        <img
+          src={project.cover}
+          alt={title}
+          className="w-full h-auto block transition-transform duration-700 ease-out group-hover:scale-105"
+          loading="lazy"
         />
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
-      </div>
-
-      {/* Text overlay at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-5 pt-16 sm:p-6 sm:pt-24">
-        <h3 className="text-lg font-bold leading-tight text-white sm:text-xl">
-          {title}
-        </h3>
       </div>
     </motion.div>
   )
