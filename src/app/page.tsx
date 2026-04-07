@@ -2,8 +2,9 @@
 
 import { useState, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { X } from 'lucide-react'
 import { LanguageProvider } from '@/contexts/LanguageContext'
+import { useLanguage } from '@/contexts/LanguageContext'
 import CustomCursor from '@/components/CustomCursor'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
@@ -15,62 +16,63 @@ import GWASection from '@/components/GWASection'
 import ContactSection from '@/components/ContactSection'
 
 /* ─── Project Data ─── */
-const projects = [
+interface Project {
+  id: number
+  titleDe: string
+  titleEn: string
+  cover: string
+  pagesDe: string[]
+  pagesEn: string[]
+}
+
+const projects: Project[] = [
   {
     id: 1,
-    title: 'Recruiting Kampagne',
-    client: 'VW Nutzfahrzeuge',
+    titleDe: 'Recruiting Kampagne',
+    titleEn: 'Recruiting Campaign',
     cover: '/portfolio/page_2.jpg',
-    images: ['/portfolio/page_2.jpg', '/portfolio/page_3.jpg'],
-    description:
-      'VW Nutzfahrzeuge unterstützt mit der Kampagne „Finde deinen Weg" Autohäuser bei der Suche nach Nachwuchstalenten. Es werden interessante, zielgruppenspezifische Social-Media-Anzeigen auf verschiedenen Plattformen geschaltet. Das Look and Feel der Kampagne wird auch auf der hauseigenen Recruiting-Website übernommen. Meine Aufgaben bei diesem Projekt umfassten die strategische Planung, Ideenentwicklung und Kreation der Kampagne.',
+    pagesDe: ['/portfolio/page_2.jpg', '/portfolio/page_3.jpg'],
+    pagesEn: ['/portfolio/page_2.jpg', '/portfolio/page_3.jpg'],
   },
   {
     id: 2,
-    title: 'Web Design',
-    client: 'Bäckerei',
+    titleDe: 'Web Design',
+    titleEn: 'Web Design',
     cover: '/portfolio/page_4.jpg',
-    images: ['/portfolio/page_4.jpg', '/portfolio/page_5.jpg'],
-    description:
-      'Bei diesem Berufsschulprojekt erhielten wir den Auftrag, eine One-Page-Website für eine junge und moderne Bäckerei zu gestalten und diese mit den Programmiersprachen HTML und CSS umzusetzen.',
+    pagesDe: ['/portfolio/page_4.jpg', '/portfolio/page_5.jpg'],
+    pagesEn: ['/portfolio/page_4.jpg', '/portfolio/page_5.jpg'],
   },
   {
     id: 3,
-    title: 'Lidl Money Campaign',
-    client: 'Lidl',
+    titleDe: 'Lidl Money Campaign',
+    titleEn: 'Lidl Money Campaign',
     cover: '/portfolio/page_6.jpg',
-    images: ['/portfolio/page_6.jpg', '/portfolio/page_7.jpg', '/portfolio/page_8.jpg'],
-    description:
-      'Lidl Money ist ein Rebranding des bestehenden Rabattsystems der Lidl App. Rabatte werden zu einer emotional aufgeladenen, digitalen Markswährung mit dem Ziel, Teil der Popkultur zu werden. Während Lidl Money hauptsächlich digital existiert, wird es für Marketingmaßnahmen gezielt physisch inszeniert. Die Idee eröffnet neue kreative Spielräume für Kampagnen, Influencer- und Guerilla-Aktionen. Konzept und Ideation wurden von mir entwickelt. Freie Konzeptidee.',
-    additionalText:
-      'SSIO x LIDL MONEY: Discounts, go viral. SSIO flexxt Lidl Money im Musikvideo und auf der Straße. Rabatt wird Popkultur. Social Media Schatzsuche: Find it. Own it. Spend it. Influencer droppen Hinweise. Die Community jagt Lidl Money. Festival Activation: Auf die Plätze, Fertig, Los! Lidl macht Challenges auf Festivals mit Lidl Money Preisgeld. Direkt einlösbar im Lidl Festival Pop-up.',
+    pagesDe: ['/portfolio/page_6.jpg', '/portfolio/page_7.jpg', '/portfolio/page_8.jpg'],
+    pagesEn: ['/portfolio/page_6.jpg', '/portfolio/page_7.jpg', '/portfolio/page_8.jpg'],
   },
   {
     id: 4,
-    title: 'Social Media Bremen NEXT',
-    client: 'Bremen NEXT',
+    titleDe: 'Social Media Bremen NEXT',
+    titleEn: 'Social Media Bremen NEXT',
     cover: '/portfolio/page_9.jpg',
-    images: ['/portfolio/page_9.jpg', '/portfolio/page_10.jpg'],
-    description:
-      'Für den Instagram-Account des Radiosenders Bremen NEXT habe ich Bewegtbildbeiträge erstellt. Konkret umfasste meine Arbeit: Konzeption der Videobeiträge, Aufnehmen der Inhalte, Videobearbeitung und -schnitt. 80,3K Aufrufe und 2,2M weitere Reels.',
+    pagesDe: ['/portfolio/page_9.jpg', '/portfolio/page_10.jpg'],
+    pagesEn: ['/portfolio/page_9.jpg', '/portfolio/page_10.jpg'],
   },
   {
     id: 5,
-    title: 'Landtagswahlen FDP Rheinland-Pfalz',
-    client: 'FDP Rheinland-Pfalz',
+    titleDe: 'Landtagswahlen FDP Rheinland-Pfalz',
+    titleEn: 'State Elections FDP Rhineland-Palatinate',
     cover: '/portfolio/page_11.jpg',
-    images: ['/portfolio/page_11.jpg', '/portfolio/page_12.jpg'],
-    description:
-      'Kreative Mitwirkung an der Landtagswahlkampagne 2026 der FDP Rheinland-Pfalz für Daniela Schmitt. Unterstützung in der konzeptionellen und gestalterischen Ausarbeitung der Kampagne über verschiedene Kommunikationsmittel hinweg.',
+    pagesDe: ['/portfolio/page_11.jpg', '/portfolio/page_12.jpg'],
+    pagesEn: ['/portfolio/page_11.jpg', '/portfolio/page_12.jpg'],
   },
   {
     id: 6,
-    title: 'Landtagswahlen FDP Baden-Württemberg',
-    client: 'FDP Baden-Württemberg',
+    titleDe: 'Landtagswahlen FDP Baden-Württemberg',
+    titleEn: 'State Elections FDP Baden-Württemberg',
     cover: '/portfolio/page_11.jpg',
-    images: ['/portfolio/page_11.jpg', '/portfolio/page_13.jpg'],
-    description:
-      'Kreative Mitarbeit an der Landtagswahlkampagne 2026 der FDP Baden-Württemberg für Hans-Ulrich Rülke. Gestaltung und Ausarbeitung von Mock-ups sowie textliche Unterstützung der Kampagne.',
+    pagesDe: ['/portfolio/page_11.jpg', '/portfolio/page_13.jpg'],
+    pagesEn: ['/portfolio/page_11.jpg', '/portfolio/page_13.jpg'],
   },
 ]
 
@@ -102,10 +104,12 @@ function ProjectCard({
   project,
   index,
   onClick,
+  title,
 }: {
-  project: (typeof projects)[number]
+  project: Project
   index: number
   onClick: () => void
+  title: string
 }) {
   const { setRef, isVisible } = useReveal(0.1)
 
@@ -130,37 +134,26 @@ function ProjectCard({
 
       {/* Text overlay at bottom */}
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-5 pt-16 sm:p-6 sm:pt-24">
-        <p className="text-xs font-medium tracking-widest text-white/70 uppercase">
-          {project.client}
-        </p>
-        <h3 className="mt-1 text-lg font-bold leading-tight text-white sm:text-xl">
-          {project.title}
+        <h3 className="text-lg font-bold leading-tight text-white sm:text-xl">
+          {title}
         </h3>
       </div>
-
-
     </motion.div>
   )
 }
 
-/* ─── Project Modal ─── */
+/* ─── Fullscreen Project Modal (Document Viewer) ─── */
 function ProjectModal({
   project,
+  title,
+  pages,
   onClose,
 }: {
-  project: (typeof projects)[number]
+  project: Project
+  title: string
+  pages: string[]
   onClose: () => void
 }) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(1)
-
-  const goToPrev = useCallback(() => {
-    setCurrentImageIndex((prev) => (prev > 0 ? prev - 1 : project.images.length - 1))
-  }, [project.images.length])
-
-  const goToNext = useCallback(() => {
-    setCurrentImageIndex((prev) => (prev < project.images.length - 1 ? prev + 1 : 0))
-  }, [project.images.length])
-
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
@@ -171,118 +164,83 @@ function ProjectModal({
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
-      if (e.key === 'ArrowLeft') goToPrev()
-      if (e.key === 'ArrowRight') goToNext()
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [onClose, goToPrev, goToNext])
+  }, [onClose])
 
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="fixed inset-0 z-[100] flex items-center justify-center"
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-[100] flex flex-col"
+      onClick={onClose}
+    >
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+
+      {/* Close button — fixed top right */}
+      <button
         onClick={onClose}
+        className="absolute top-5 right-5 z-30 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white shadow-lg transition-colors hover:bg-white/20"
       >
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+        <X className="h-5 w-5" />
+      </button>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-          onClick={(e) => e.stopPropagation()}
-          className="relative z-10 mx-4 flex max-h-[90vh] w-full max-w-6xl flex-col overflow-hidden rounded-xl bg-white shadow-2xl md:flex-row"
-        >
-          {/* Close button */}
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#1a1a1a] shadow-md transition-colors hover:bg-[#5bffc2] hover:text-white md:top-6 md:right-6"
-          >
-            <X className="h-5 w-5" />
-          </button>
+      {/* Project title — fixed top left */}
+      <div className="absolute top-5 left-5 z-30">
+        <h2 className="text-lg font-bold text-white/90 sm:text-xl">{title}</h2>
+      </div>
 
-          {/* Left: Image — full bleed to top, left, bottom edges */}
-          <div className="relative flex min-h-[300px] flex-1 items-stretch bg-[#f5f5f5] md:min-h-0 overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={currentImageIndex}
-                src={project.images[currentImageIndex]}
-                alt={`${project.title} — Bild ${currentImageIndex + 1}`}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-                className="w-full h-full object-cover"
-              />
-            </AnimatePresence>
+      {/* Scrollable pages area */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 30 }}
+        transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative z-10 flex-1 overflow-y-auto px-4 py-20 sm:px-8 md:px-16"
+      >
+        <div className="mx-auto flex max-w-4xl flex-col gap-6 sm:gap-8">
+          {pages.map((page, idx) => (
+            <motion.img
+              key={`${project.id}-${idx}`}
+              src={page}
+              alt={`${title} — Seite ${idx + 1}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: idx * 0.08, ease: 'easeOut' }}
+              className="w-full rounded-sm shadow-2xl"
+            />
+          ))}
+        </div>
 
-            {project.images.length > 1 && (
-              <>
-                <button
-                  onClick={goToPrev}
-                  className="absolute top-1/2 left-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-[#1a1a1a] shadow transition-colors hover:bg-[#5bffc2] hover:text-white md:left-4"
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={goToNext}
-                  className="absolute top-1/2 right-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-[#1a1a1a] shadow transition-colors hover:bg-[#5bffc2] hover:text-white md:right-4"
-                >
-                  <ChevronRight className="h-4 w-4" />
-                </button>
-                <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-1.5 md:bottom-6">
-                  {project.images.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentImageIndex(idx)}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${
-                        idx === currentImageIndex
-                          ? 'w-6 bg-[#5bffc2]'
-                          : 'w-1.5 bg-[#1a1a1a]/30 hover:bg-[#1a1a1a]/60'
-                      }`}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
-
-          {/* Right: Info */}
-          <div className="flex max-h-[40vh] flex-col justify-center overflow-y-auto p-6 md:max-h-[90vh] md:w-[420px] md:p-10">
-            <p className="text-xs font-medium tracking-[0.2em] text-[#5bffc2] uppercase">
-              {project.client}
-            </p>
-            <h2 className="mt-3 text-2xl font-bold leading-tight text-[#1a1a1a] sm:text-3xl">
-              {project.title}
-            </h2>
-            <div className="mt-6 h-px w-12 bg-[#5bffc2]" />
-            <p className="mt-6 text-[15px] leading-relaxed text-[#555]">
-              {project.description}
-            </p>
-            {project.additionalText && (
-              <>
-                <div className="mt-6 h-px w-full bg-[#eee]" />
-                <p className="mt-4 text-[14px] leading-relaxed text-[#777]">
-                  {project.additionalText}
-                </p>
-              </>
-            )}
-          </div>
-        </motion.div>
+        {/* Bottom spacer so last page isn't cut off */}
+        <div className="h-8" />
       </motion.div>
-    </AnimatePresence>
+    </motion.div>
   )
 }
 
 /* ─── Projects Section ─── */
 function ProjectsSection() {
-  const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null)
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const { lang } = useLanguage()
   const { setRef, isVisible } = useReveal(0.05)
+
+  const selectedTitle = selectedProject
+    ? lang === 'de'
+      ? selectedProject.titleDe
+      : selectedProject.titleEn
+    : ''
+
+  const selectedPages = selectedProject
+    ? lang === 'de'
+      ? selectedProject.pagesDe
+      : selectedProject.pagesEn
+    : []
 
   return (
     <section id="projects" className="bg-white py-24 px-6 md:py-32 md:px-12">
@@ -294,7 +252,7 @@ function ProjectsSection() {
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
             <span className="text-sm tracking-widest uppercase text-[#0a0a0a]/40 mb-4 block">
-              Ausgewählte Arbeiten
+              {lang === 'de' ? 'Ausgewählte Arbeiten' : 'Selected Work'}
             </span>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#0a0a0a] tracking-tighter">
               PROJEKTE
@@ -304,14 +262,18 @@ function ProjectsSection() {
         </div>
 
         <div className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              index={index}
-              onClick={() => setSelectedProject(project)}
-            />
-          ))}
+          {projects.map((project, index) => {
+            const title = lang === 'de' ? project.titleDe : project.titleEn
+            return (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                title={title}
+                onClick={() => setSelectedProject(project)}
+              />
+            )
+          })}
         </div>
       </div>
 
@@ -319,6 +281,8 @@ function ProjectsSection() {
         {selectedProject && (
           <ProjectModal
             project={selectedProject}
+            title={selectedTitle}
+            pages={selectedPages}
             onClose={() => setSelectedProject(null)}
           />
         )}
