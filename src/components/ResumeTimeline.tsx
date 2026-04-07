@@ -131,9 +131,6 @@ export default function ResumeTimeline() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="text-sm tracking-widest uppercase text-white/40 mb-4 block">
-              {t('Werdegang', 'Background')}
-            </span>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter">
               {t('Lebenslauf', 'Resume')}
             </h2>

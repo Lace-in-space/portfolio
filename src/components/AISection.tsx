@@ -24,9 +24,6 @@ export default function AISection() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-12 md:mb-16"
         >
-          <span className="text-sm tracking-widest uppercase text-white/40 mb-4 block">
-            {t('Künstliche Intelligenz', 'Artificial Intelligence')}
-          </span>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter">
             {t('KI & Design', 'AI & Design')}
           </h2>

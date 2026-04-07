@@ -251,9 +251,6 @@ function ProjectsSection() {
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <span className="text-sm tracking-widest uppercase text-[#0a0a0a]/40 mb-4 block">
-              {lang === 'de' ? 'Ausgewählte Arbeiten' : 'Selected Work'}
-            </span>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#0a0a0a] tracking-tighter">
               PROJEKTE
             </h2>

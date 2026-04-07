@@ -59,9 +59,6 @@ export default function InteractiveDots() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-16 md:mb-24"
         >
-          <span className="text-sm tracking-widest uppercase text-[#0a0a0a]/40 mb-4 block">
-            {t('Werkzeuge', 'Tools')}
-          </span>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#0a0a0a] tracking-tighter">
             {t('Software & Tools', 'Software & Tools')}
           </h2>
