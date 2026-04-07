@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
 
@@ -78,20 +78,32 @@ const timeline: TimelineEntry[] = [
   },
 ]
 
-/*
- * Calculate how far the carousel must travel so the LAST entry is centered.
- * We need to scroll: (n-1) * itemWidth + halfItemWidth - halfViewportWidth
- * As a fraction of the total carousel width (n * itemWidth + (n-1) * gap + padding),
- * this is approximately: (1 - 1.5 / n) for evenly-spaced items with padding.
- * For 6 items → ~75%
- */
-const numEntries = timeline.length
-const maxTravel = Math.max(0, (1 - 1.5 / numEntries) * 100)
-
 export default function ResumeTimeline() {
   const { t, lang } = useLanguage()
   const sectionRef = useRef<HTMLDivElement>(null)
+  const carouselRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
+  const [maxOffset, setMaxOffset] = useState(0)
+
+  /* Measure the carousel after mount + on resize so the last entry
+     is exactly centered in the viewport at the end of the scroll. */
+  useEffect(() => {
+    const measure = () => {
+      if (!carouselRef.current) return
+      const container = carouselRef.current.parentElement // overflow-hidden wrapper
+      if (!container) return
+      const viewportWidth = container.offsetWidth
+      /* Find the last visible entry element inside the carousel */
+      const items = carouselRef.current.querySelectorAll('[data-entry]')
+      const lastItem = items[items.length - 1] as HTMLElement | undefined
+      if (!lastItem) return
+      const lastItemCenter = lastItem.offsetLeft + lastItem.offsetWidth / 2
+      setMaxOffset(Math.max(0, lastItemCenter - viewportWidth / 2))
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [])
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -99,20 +111,24 @@ export default function ResumeTimeline() {
   })
 
   /*
-   * Section is tall enough so the viewport stays pinned while the carousel
-   * scrolls all the way until the last entry is centered.
-   * Then a small buffer allows the viewport to release and continue to next section.
+   * Scroll range breakdown (out of total scrollYProgress 0→1):
+   *   0.00–0.04  : nothing (section entering viewport)
+   *   0.04–0.88  : carousel scrolls horizontally, last entry reaches center
+   *   0.88–1.00  : carousel stays, viewport releases to next section
    */
-  const translateX = useTransform(scrollYProgress, [0.04, 0.88], ['0%', `-${maxTravel}%`])
-  const scrollHintOpacity = useTransform(scrollYProgress, [0.04, 0.14], [1, 0])
-  const progressScale = useTransform(scrollYProgress, [0.04, 0.88], [0, 1])
+  const carouselStart = 0.04
+  const carouselEnd = 0.88
+
+  const translateX = useTransform(scrollYProgress, [carouselStart, carouselEnd], [0, -maxOffset])
+  const scrollHintOpacity = useTransform(scrollYProgress, [carouselStart, carouselStart + 0.10], [1, 0])
+  const progressScale = useTransform(scrollYProgress, [carouselStart, carouselEnd], [0, 1])
 
   return (
     <section
       id="resume"
       ref={sectionRef}
       className="bg-[#0a0a0a] relative"
-      style={{ height: '500vh' }}
+      style={{ height: '700vh' }}
     >
       {/* Sticky viewport — pins at top while the section scrolls past */}
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
@@ -143,8 +159,9 @@ export default function ResumeTimeline() {
         {/* Horizontal scroll carousel */}
         <div className="overflow-hidden">
           <motion.div
+            ref={carouselRef}
             style={{ x: translateX }}
-            className="flex gap-8 md:gap-12 pl-6 md:pl-12 pr-[40vw]"
+            className="flex gap-8 md:gap-12 pl-6 md:pl-12 pr-[45vw]"
           >
             {timeline.map((entry, index) => {
               const title = lang === 'de' ? entry.titleDe : entry.titleEn
@@ -154,6 +171,7 @@ export default function ResumeTimeline() {
               return (
                 <motion.div
                   key={index}
+                  data-entry
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}

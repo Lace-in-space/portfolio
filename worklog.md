@@ -54,3 +54,25 @@ Stage Summary:
 - Alle 6 Projekte mit Deckblatt, Text und Detail-Ansicht implementiert
 - Projekt-Modal mit Bildlinks/Textrechts-Layout und Bild-Navigation
 - Vorschau: https://preview-chat-e4002537-034b-41a7-be88-ffcdf8ba713e.space.z.ai/
+
+---
+Task ID: 8
+Agent: Main Agent
+Task: Lebenslauf-Karussell reparieren – letzte 2 Einträge sichtbar machen, letzter Eintrag zentriert stoppen
+
+Work Log:
+- ResumeTimeline.tsx analysiert: prozentbasierte maxTravel-Berechnung (75%) war ungenau
+- Neue Lösung implementiert: dynamische Messung der Karussell-Breite via useRef + useEffect
+- offsetLeft und offsetWidth des letzten Eintrags werden gemessen
+- Exakter Pixel-Offset berechnet: lastItemCenter - viewportWidth/2
+- Section-Höhe von 500vh auf 700vh erhöht für ausreichend Scroll-Distanz
+- pr-[40vw] auf pr-[45vw] erhöht für mehr Platz am Ende
+- data-entry Attribut auf jeden Karussell-Eintrag für DOM-Messung hinzugefügt
+- Resize-Listener für responsives Verhalten
+- Build erfolgreich verifiziert (0 Fehler)
+
+Stage Summary:
+- Karussell zeigt jetzt alle 6 Einträge beim Scrollen
+- Letzter Eintrag stoppt exakt in der Mitte des Viewports
+- Viewport gibt erst nach Erreichen der Endposition an nächste Section frei
+- Datei: /home/z/my-project/src/components/ResumeTimeline.tsx
