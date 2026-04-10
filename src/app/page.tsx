@@ -14,6 +14,7 @@ import ResumeTimeline from '@/components/ResumeTimeline'
 import AISection from '@/components/AISection'
 import GWASection from '@/components/GWASection'
 import ContactSection from '@/components/ContactSection'
+import PasswordGate from '@/components/PasswordGate'
 
 /* ─── Project Data ─── */
 interface Project {
@@ -287,18 +288,20 @@ function ProjectsSection() {
 export default function Home() {
   return (
     <LanguageProvider>
-      <CustomCursor />
-      <Header />
-      <main>
-        <Hero />
-        <StorytellingSection />
-        <ProjectsSection />
-        <ResumeTimeline />
-        <GWASection />
-        <AISection />
-        <InteractiveDots />
-        <ContactSection />
-      </main>
+      <PasswordGate>
+        <CustomCursor />
+        <Header />
+        <main>
+          <Hero />
+          <StorytellingSection />
+          <ProjectsSection />
+          <ResumeTimeline />
+          <GWASection />
+          <AISection />
+          <InteractiveDots />
+          <ContactSection />
+        </main>
+      </PasswordGate>
     </LanguageProvider>
   )
 }
