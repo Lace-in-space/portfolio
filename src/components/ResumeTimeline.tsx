@@ -24,7 +24,7 @@ const timeline: TimelineEntry[] = [
     companyEn: 'Apprenticeship',
     descriptionDe: 'Ausbildung integriert im Bachelor',
     descriptionEn: 'Apprenticeship integrated in the bachelor',
-    logo: 'GTA',
+    logo: '/logos/mmbbs.jpg',
   },
   {
     year: '2023–2027',
@@ -34,7 +34,7 @@ const timeline: TimelineEntry[] = [
     companyEn: 'Hochschule Hannover',
     descriptionDe: 'duales Bachelorstudium mit Praxisphasen',
     descriptionEn: 'dual bachelor program with internships',
-    logo: 'HsH',
+    logo: '/logos/hsh_logo.jpg',
   },
   {
     year: '2023',
@@ -44,7 +44,7 @@ const timeline: TimelineEntry[] = [
     companyEn: 'Bremen NEXT',
     descriptionDe: '2 wöchiges freiwilliges Praktikum',
     descriptionEn: '2 week Internship',
-    logo: 'BN',
+    logo: '/logos/Bremen_Next_logo_t:w.jpg',
   },
   {
     year: '2024',
@@ -54,7 +54,7 @@ const timeline: TimelineEntry[] = [
     companyEn: 'Creativteam (Hannover)',
     descriptionDe: '5 monatiges Pflichtpraktikum',
     descriptionEn: '5 month long internship',
-    logo: 'CT',
+    logo: '/logos/CC_logo.jpg',
   },
   {
     year: '2025',
@@ -64,7 +64,7 @@ const timeline: TimelineEntry[] = [
     companyEn: 'AANDRS (Vienna)',
     descriptionDe: '2 monatiges Pflichtpraktikum',
     descriptionEn: '2 month long internship',
-    logo: 'AA',
+    logo: '/logos/AANDRS_logo_b:w.jpg',
   },
   {
     year: '2025',
@@ -74,7 +74,7 @@ const timeline: TimelineEntry[] = [
     companyEn: 'Heimat/TBWA (Berlin)',
     descriptionDe: '3 monatiges Pflichtpraktikum',
     descriptionEn: '3 month long internship',
-    logo: 'HT',
+    logo: '/logos/HeimatTBWA_b:w.jpg',
   },
 ]
 
