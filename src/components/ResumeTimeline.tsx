@@ -100,7 +100,7 @@ function LogoImg({ src, fallback, title }: { src: string; fallback: string; titl
     <img
       src={src}
       alt={title}
-      className="w-full h-full object-contain"
+      className="w-full h-full object-cover"
       onError={() => setImgError(true)}
     />
   )
