@@ -13,6 +13,7 @@ interface TimelineEntry {
   descriptionDe: string
   descriptionEn: string
   logo: string
+  logoFallback: string
 }
 
 const timeline: TimelineEntry[] = [
@@ -25,6 +26,7 @@ const timeline: TimelineEntry[] = [
     descriptionDe: 'Ausbildung integriert im Bachelor',
     descriptionEn: 'Apprenticeship integrated in the bachelor',
     logo: '/logos/mmbbs.jpg',
+    logoFallback: 'GTA',
   },
   {
     year: '2023–2027',
@@ -35,6 +37,7 @@ const timeline: TimelineEntry[] = [
     descriptionDe: 'duales Bachelorstudium mit Praxisphasen',
     descriptionEn: 'dual bachelor program with internships',
     logo: '/logos/hsh_logo.jpg',
+    logoFallback: 'HsH',
   },
   {
     year: '2023',
@@ -44,7 +47,8 @@ const timeline: TimelineEntry[] = [
     companyEn: 'Bremen NEXT',
     descriptionDe: '2 wöchiges freiwilliges Praktikum',
     descriptionEn: '2 week Internship',
-    logo: '/logos/Bremen_Next_logo_t:w.jpg',
+    logo: '/logos/Bremen_Next_logo_tw.jpg',
+    logoFallback: 'BN',
   },
   {
     year: '2024',
@@ -55,6 +59,7 @@ const timeline: TimelineEntry[] = [
     descriptionDe: '5 monatiges Pflichtpraktikum',
     descriptionEn: '5 month long internship',
     logo: '/logos/CC_logo.jpg',
+    logoFallback: 'CT',
   },
   {
     year: '2025',
@@ -64,7 +69,8 @@ const timeline: TimelineEntry[] = [
     companyEn: 'AANDRS (Vienna)',
     descriptionDe: '2 monatiges Pflichtpraktikum',
     descriptionEn: '2 month long internship',
-    logo: '/logos/AANDRS_logo_b:w.jpg',
+    logo: '/logos/AANDRS_logo_bw.jpg',
+    logoFallback: 'AA',
   },
   {
     year: '2025',
@@ -74,9 +80,31 @@ const timeline: TimelineEntry[] = [
     companyEn: 'Heimat/TBWA (Berlin)',
     descriptionDe: '3 monatiges Pflichtpraktikum',
     descriptionEn: '3 month long internship',
-    logo: '/logos/HeimatTBWA_b:w.jpg',
+    logo: '/logos/HeimatTBWA.jpg',
+    logoFallback: 'HT',
   },
 ]
+
+function LogoImg({ src, fallback, title }: { src: string; fallback: string; title: string }) {
+  const [imgError, setImgError] = useState(false)
+
+  if (imgError) {
+    return (
+      <span className="text-sm md:text-base font-bold text-white/60 tracking-tight">
+        {fallback}
+      </span>
+    )
+  }
+
+  return (
+    <img
+      src={src}
+      alt={title}
+      className="w-full h-full object-contain"
+      onError={() => setImgError(true)}
+    />
+  )
+}
 
 export default function ResumeTimeline() {
   const { t, lang } = useLanguage()
@@ -185,10 +213,8 @@ export default function ResumeTimeline() {
 
                   <div className="ml-8 pt-2">
                     {/* Logo */}
-                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-4">
-                      <span className="text-sm md:text-base font-bold text-white/60 tracking-tight">
-                        {entry.logo}
-                      </span>
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-4 overflow-hidden p-2">
+                      <LogoImg src={entry.logo} fallback={entry.logoFallback} title={title} />
                     </div>
 
                     <span className="text-sm text-[#5bffc2] font-mono">{entry.year}</span>
