@@ -213,7 +213,7 @@ export default function ResumeTimeline() {
 
                   <div className="ml-8 pt-2">
                     {/* Logo */}
-                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-4 overflow-hidden p-2">
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-4 overflow-hidden">
                       <LogoImg src={entry.logo} fallback={entry.logoFallback} title={title} />
                     </div>
 
