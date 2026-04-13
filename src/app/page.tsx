@@ -248,7 +248,7 @@ function ProjectsSection() {
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#0a0a0a] tracking-tighter">
-              PROJEKTE
+              {lang === 'de' ? 'PROJEKTE' : 'PROJECTS'}
             </h2>
             <div className="mt-4 h-1 w-16 bg-[#5bffc2]" />
           </motion.div>

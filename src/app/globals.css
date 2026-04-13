@@ -131,3 +131,29 @@ html {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
+/* Fonts für die Überschriften */
+@font-face {
+  font-family: 'StretchPro';
+  src: url('/fonts/StretchPro.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Section headings use StretchPro font */
+h1, h2, h3 {
+  font-family: 'StretchPro', sans-serif;
+  text-transform: uppercase;
+}
+
+/* Carousel entries keep default font */
+[data-entry] h3 {
+  font-family: inherit;
+  text-transform: none;
+}
+
+/* Nur animierte Elemente nutzen will-change */
+[data-entry], .sticky {
+  will-change: transform;
+}

@@ -11,9 +11,22 @@ export default function CustomCursor() {
   useEffect(() => {
     if (isMobile) return
 
+    /*
     const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY })
       setIsVisible(true)
+    }
+    */
+
+    let ticking = false
+    const handleMouseMove = (e: MouseEvent) => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        setPosition({ x: e.clientX, y: e.clientY })
+        setIsVisible(true)
+        ticking = false
+      })
     }
 
     const handleMouseLeave = () => setIsVisible(false)

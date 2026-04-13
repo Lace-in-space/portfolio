@@ -42,16 +42,6 @@ export default function StorytellingSection() {
           >
             Your browser does not support the video tag.
           </video>
-
-          {/* Animated gradient fallback if no video file is found */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(45deg, #0a0a0a, #1a1a2e, #5bffc2, #0a0a0a)',
-              backgroundSize: '400% 400%',
-              animation: 'gradientShift 10s ease infinite',
-            }}
-          />
         </motion.div>
 
         {/* ── Text overlay ── */}
@@ -59,7 +49,7 @@ export default function StorytellingSection() {
           style={{ opacity: textOpacity, y: textY, scale: textScale }}
           className="relative z-10 text-center px-8"
         >
-          <h2 className="text-5xl md:text-7xl lg:text-9xl font-bold text-white tracking-tighter select-none">
+          <h2 className="text-[8vw] font-bold text-white tracking-tighter select-none px-4">
             Storytelling
           </h2>
         </motion.div>

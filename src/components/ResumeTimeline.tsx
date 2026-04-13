@@ -136,6 +136,7 @@ export default function ResumeTimeline() {
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end end'],
+    lerp: true,
   })
 
   /*
