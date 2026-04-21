@@ -8,6 +8,7 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import CustomCursor from '@/components/CustomCursor'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
+import AboutSection from '@/components/AboutSection'
 import StorytellingSection from '@/components/StorytellingSection'
 import InteractiveDots from '@/components/InteractiveDots'
 import ResumeTimeline from '@/components/ResumeTimeline'
@@ -33,7 +34,7 @@ const projects: Project[] = [
     titleEn: 'Recruiting Campaign',
     cover: '/portfolio/page_2.jpg',
     pagesDe: ['/portfolio/page_2.jpg', '/portfolio/page_3.jpg'],
-    pagesEn: ['/portfolio/page_2.jpg', '/portfolio/page_3.jpg'],
+    pagesEn: ['/portfolio/page_2_en.jpg', '/portfolio/page_3_en.jpg'],
   },
   {
     id: 2,
@@ -41,7 +42,7 @@ const projects: Project[] = [
     titleEn: 'Web Design',
     cover: '/portfolio/page_4.jpg',
     pagesDe: ['/portfolio/page_4.jpg', '/portfolio/page_5.jpg'],
-    pagesEn: ['/portfolio/page_4.jpg', '/portfolio/page_5.jpg'],
+    pagesEn: ['/portfolio/page_4_en.jpg', '/portfolio/page_5_en.jpg'],
   },
   {
     id: 3,
@@ -49,7 +50,7 @@ const projects: Project[] = [
     titleEn: 'Lidl Money Campaign',
     cover: '/portfolio/page_6.jpg',
     pagesDe: ['/portfolio/page_6.jpg', '/portfolio/page_7.jpg', '/portfolio/page_8.jpg'],
-    pagesEn: ['/portfolio/page_6.jpg', '/portfolio/page_7.jpg', '/portfolio/page_8.jpg'],
+    pagesEn: ['/portfolio/page_6_en.jpg', '/portfolio/page_7_en.jpg', '/portfolio/page_8_en.jpg'],
   },
   {
     id: 4,
@@ -57,7 +58,7 @@ const projects: Project[] = [
     titleEn: 'Social Media Bremen NEXT',
     cover: '/portfolio/page_9.jpg',
     pagesDe: ['/portfolio/page_9.jpg', '/portfolio/page_10.jpg'],
-    pagesEn: ['/portfolio/page_9.jpg', '/portfolio/page_10.jpg'],
+    pagesEn: ['/portfolio/page_9_en.jpg', '/portfolio/page_10_en.jpg'],
   },
   {
     id: 5,
@@ -65,7 +66,7 @@ const projects: Project[] = [
     titleEn: 'State Elections FDP Rhineland-Palatinate',
     cover: '/portfolio/page_11.jpg',
     pagesDe: ['/portfolio/page_11.jpg', '/portfolio/page_12.jpg'],
-    pagesEn: ['/portfolio/page_11.jpg', '/portfolio/page_12.jpg'],
+    pagesEn: ['/portfolio/page_11_en.jpg', '/portfolio/page_12_en.jpg'],
   },
   {
     id: 6,
@@ -73,7 +74,7 @@ const projects: Project[] = [
     titleEn: 'State Elections FDP Baden-Württemberg',
     cover: '/portfolio/page_11.jpg',
     pagesDe: ['/portfolio/page_11.jpg', '/portfolio/page_13.jpg'],
-    pagesEn: ['/portfolio/page_11.jpg', '/portfolio/page_13.jpg'],
+    pagesEn: ['/portfolio/page_11_en.jpg', '/portfolio/page_13_en.jpg'],
   },
 ]
 
@@ -293,12 +294,13 @@ export default function Home() {
         <Header />
         <main>
           <Hero />
-          <StorytellingSection />
+          <AboutSection />
           <ProjectsSection />
           <ResumeTimeline />
-          <GWASection />
-          <AISection />
-          <InteractiveDots />
+          {/* <GWASection /> */}
+          {/* <StorytellingSection /> */}
+          {/* <AISection /> */}
+          {/* <InteractiveDots /> */}
           <ContactSection />
         </main>
       </PasswordGate>

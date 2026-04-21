@@ -60,7 +60,7 @@ export default function InteractiveDots() {
           className="mb-16 md:mb-24"
         >
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#0a0a0a] tracking-tighter">
-            {t('Software & Tools', 'Software & Tools')}
+            {t('ICH BENUTZE', 'I USE')}
           </h2>
         </motion.div>
 

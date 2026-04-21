@@ -125,8 +125,8 @@ export default function ResumeTimeline() {
       const items = carouselRef.current.querySelectorAll('[data-entry]')
       const lastItem = items[items.length - 1] as HTMLElement | undefined
       if (!lastItem) return
-      const lastItemCenter = lastItem.offsetLeft + lastItem.offsetWidth / 2
-      setMaxOffset(Math.max(0, lastItemCenter - viewportWidth / 2))
+      const lastItemCenter = lastItem.offsetLeft + lastItem.offsetWidth
+      setMaxOffset(Math.max(0, lastItemCenter - viewportWidth + 48))
     }
     measure()
     window.addEventListener('resize', measure)
@@ -156,7 +156,7 @@ export default function ResumeTimeline() {
     <section
       id="resume"
       ref={sectionRef}
-      className="bg-[#0a0a0a] relative"
+      className="bg-black relative"
       style={{ height: '700vh' }}
     >
       {/* Sticky viewport — pins at top while the section scrolls past */}

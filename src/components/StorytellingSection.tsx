@@ -1,57 +1,53 @@
 'use client'
 
 import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function StorytellingSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  })
-
-  /* Scroll phases (0 → 1 across 300vh):
-     0.00–0.25  text fades in, video at 60%
-     0.25–0.50  text fully visible, viewport "pauses" on section, video at 60%
-     0.50–0.75  text fades out, video 60% → 100%
-     0.75–1.00  video at 100%, scroll continues to next section
-  */
-
-  const videoOpacity = useTransform(scrollYProgress, [0, 0.5, 0.75], [0.6, 0.6, 1])
-  const textOpacity = useTransform(scrollYProgress, [0.05, 0.25, 0.5, 0.7], [0, 1, 1, 0])
-  const textY = useTransform(scrollYProgress, [0.05, 0.25, 0.7], [60, 0, -80])
-  const textScale = useTransform(scrollYProgress, [0.05, 0.25, 0.7], [0.85, 1, 1.05])
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
+  const { t } = useLanguage()
 
   return (
-    <section ref={containerRef} className="relative" style={{ height: '300vh' }}>
-      <div className="sticky top-0 h-screen w-full overflow-hidden bg-black flex items-center justify-center">
+    <section ref={sectionRef} className="relative min-h-screen bg-black">
+      {/* Background Video at 80% opacity */}
+      <div className="absolute inset-0 z-0 opacity-70">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+          src="/storytelling-video.mp4"
+        />
+      </div>
 
-        {/* ── Video layer (loop, muted, fullscreen) ── */}
+      {/* Content */}
+      <div className="relative z-10 pt-16 md:pt-24 px-6 md:px-12 w-full">
         <motion.div
-          className="absolute inset-0 z-0"
-          style={{ opacity: videoOpacity }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-10"
         >
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-            src="/storytelling-video.mp4"
-          >
-            Your browser does not support the video tag.
-          </video>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter">
+            {t('Storytelling', 'Storytelling')}
+          </h2>
         </motion.div>
 
-        {/* ── Text overlay ── */}
         <motion.div
-          style={{ opacity: textOpacity, y: textY, scale: textScale }}
-          className="relative z-10 text-center px-8"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-2xl"
         >
-          <h2 className="text-[8vw] font-bold text-white tracking-tighter select-none px-4">
-            Storytelling
-          </h2>
+          <p className="text-white/80 text-lg md:text-xl leading-relaxed">
+            {t(
+              'Hier kommt dein Text über Storytelling rein. Beschreibe, was Storytelling für dich bedeutet und wie du es in deinen Projekten einsetzt.',
+              'Your storytelling text goes here. Describe what storytelling means to you and how you use it in your projects.'
+            )}
+          </p>
         </motion.div>
       </div>
     </section>
