@@ -23,7 +23,7 @@ const timeline: TimelineEntry[] = [
     titleEn: 'Brand Collaboration & Cultural Marketing',
     companyDe: 'BMW Group (München)',
     companyEn: 'BMW Group (Munich)',
-    descriptionDe: '6 monatiges Praktikum',
+    descriptionDe: '6 monatiges Pflichtpraktikum',
     descriptionEn: '6 month internship',
     logo: '/logos/BMW_Group_.jpg',
     logoFallback: 'BMW',
