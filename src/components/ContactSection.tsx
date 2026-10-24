@@ -64,7 +64,7 @@ export default function ContactSection() {
 
           {/* LinkedIn */}
           <a
-            href="https://lihttps://www.linkedin.com/in/lasse-mueller-111093252/nkedin.com"
+            href="https://www.linkedin.com/in/lasse-mueller-111093252/"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center justify-center gap-3 transition-all duration-300 hover:gap-4"
