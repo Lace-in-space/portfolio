@@ -30,8 +30,8 @@ const timeline: TimelineEntry[] = [
   },
   {
     year: '2025',
-    titleDe: 'Intern Kreation',
-    titleEn: 'Intern Creation',
+    titleDe: 'Kreation',
+    titleEn: 'Creation',
     companyDe: 'Heimat/TBWA (Berlin)',
     companyEn: 'Heimat/TBWA (Berlin)',
     descriptionDe: '3 monatiges Pflichtpraktikum',
@@ -41,8 +41,8 @@ const timeline: TimelineEntry[] = [
   },
   {
     year: '2025',
-    titleDe: 'Intern Grafik Design',
-    titleEn: 'Intern Graphic Design',
+    titleDe: 'Grafik Design',
+    titleEn: 'Graphic Design',
     companyDe: 'AANDRS (Wien)',
     companyEn: 'AANDRS (Vienna)',
     descriptionDe: '2 monatiges Pflichtpraktikum',
@@ -52,8 +52,8 @@ const timeline: TimelineEntry[] = [
   },
   {
     year: '2024',
-    titleDe: 'Intern Strategie/Kreation',
-    titleEn: 'Intern Strategy/Creation',
+    titleDe: 'Strategie/Kreation',
+    titleEn: 'Strategy/Creation',
     companyDe: 'Creativteam (Hannover)',
     companyEn: 'Creativteam (Hannover)',
     descriptionDe: '5 monatiges Pflichtpraktikum',
@@ -63,8 +63,8 @@ const timeline: TimelineEntry[] = [
   },
   {
     year: '2023',
-    titleDe: 'Intern Social Media',
-    titleEn: 'Intern Social Media',
+    titleDe: 'Social Media',
+    titleEn: 'Social Media',
     companyDe: 'Bremen NEXT',
     companyEn: 'Bremen NEXT',
     descriptionDe: '2 wöchiges freiwilliges Praktikum',
