@@ -25,7 +25,7 @@ const timeline: TimelineEntry[] = [
     companyEn: 'BMW Group (Munich)',
     descriptionDe: '6 monatiges Praktikum',
     descriptionEn: '6 month internship',
-    logo: '/logos/BMW_logo_gradient.jpg',
+    logo: '/logos/BMW_Group_.jpg',
     logoFallback: 'BMW',
   },
   {
